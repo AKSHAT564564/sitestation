@@ -1,11 +1,11 @@
- <?php
+<?php
     use PHPMailer\PHPMailer\PHPMailer;
 
     if (isset($_POST['name']) && isset($_POST['email'])) {
         $name = $_POST['name'];
         $email = $_POST['email'];
-        $subject=$_POST['subject'];
-        $message = $_POST['message'];
+       
+        $body = $_POST['body'];
 
         require_once "PHPMailer/PHPMailer.php";
         require_once "PHPMailer/SMTP.php";
@@ -18,7 +18,7 @@
         $mail->Host = "smtp.gmail.com";
         $mail->SMTPAuth = true;
         $mail->Username = "rs9320752@gmail.com"; //enter you email address
-        $mail->Password = '12345@robin123'; //enter you email password
+        $mail->Password = '12345@aks'; //enter you email password
         $mail->Port = 465;
         $mail->SMTPSecure = "ssl";
 
@@ -27,8 +27,7 @@
         $mail->setFrom($email, $name);
         $mail->addAddress("rs9320752@gmail.com"); //enter you email address
         
-        $mail->Subject =("$email($subject)");
-        $mail->Body=$message;
+        $mail->Body = $body;
 
         if ($mail->send()) {
             $status = "success";
